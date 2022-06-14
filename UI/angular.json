@@ -36,7 +36,9 @@
               "src/@vex/styles/tailwind.scss",
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/js/help-desk.js"
+            ],
             "customWebpackConfig": {
               "path": "./webpack.config.js"
             },

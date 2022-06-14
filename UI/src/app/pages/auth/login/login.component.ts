@@ -49,6 +49,7 @@ import { RollBasedAccessService } from '../../../services/roll-based-access.serv
 import { ProfilesTypes } from '../../../enums/profiles.enum';
 import { AvailableTenantViewModel } from '../../../models/available-tenant';
 import { CatalogDbService } from 'src/app/services/catalog-db.service';
+declare function hideWidget(): any;
 @Component({
   selector: 'vex-login',
   templateUrl: './login.component.html',
@@ -129,7 +130,7 @@ export class LoginComponent implements OnInit {
   get f() { return this.form.controls; }
 
   ngOnInit() {
-    
+    hideWidget();
     if (this.cookieService.get('userDetails') !== null && this.cookieService.get('userDetails') !== "") {
       this.setValue = true;
       this.form.patchValue({ email: JSON.parse(this.cookieService.get('userDetails')).email});

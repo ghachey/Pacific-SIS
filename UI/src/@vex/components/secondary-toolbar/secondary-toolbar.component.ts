@@ -6,6 +6,7 @@ import icSearch from '@iconify/icons-ic/search';
 import icDropdown from '@iconify/icons-ic/arrow-drop-down';
 import { DefaultValuesService } from 'src/app/common/default-values.service';
 import { TranslateService } from '@ngx-translate/core';
+declare function openWidget(): any;
 
 @Component({
   selector: 'vex-secondary-toolbar',
@@ -41,5 +42,9 @@ export class SecondaryToolbarComponent implements OnInit {
     this.selectedValue = pageName; 
     this.defaultValuesService.setPageId(pageName);
     this.selectedPage.emit(pageName)
+  }
+
+  openHelpDesk() {
+    openWidget();
   }
 }
