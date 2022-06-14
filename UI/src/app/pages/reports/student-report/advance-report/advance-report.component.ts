@@ -579,6 +579,7 @@ export class AdvanceReportComponent implements OnInit {
             item.studentMaster.countryOfBirth=item.countryOfBirth;
             item.studentMaster.homeAddressCountry=item.homeAddressCountry;
             item.studentMaster.mailingAddressCountry=item.mailingAddressCountry;
+            item.studentMaster.dateOfBirth = this.formatDate(item.studentMaster.dob);
 
             item.studentMaster.criticalAlert = item.studentMaster.studentMedicalAlert.length ? item.studentMaster.studentMedicalAlert[0].alertType : null;
 

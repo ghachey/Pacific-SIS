@@ -51,6 +51,7 @@ import { Subject } from 'rxjs';
 import { GetStudentListByCourseSectionModel } from 'src/app/models/report.model';
 import { ReportService } from 'src/app/services/report.service';
 import { ExcelService } from 'src/app/services/excel.service';
+import * as moment from 'moment'
 
 
 // export interface ClassListData {
@@ -415,6 +416,11 @@ export class ClassListComponent implements OnInit, AfterViewInit, OnDestroy {
     }
    }
 
+  // For format the date
+  formatDate(date) {
+    return date ? moment(date).format('MMM D, YYYY') : null;
+  }
+
   generateClassLists() {
     if (this.selectedFieldsArray.length) {
       this.selectedFieldsArray.map(fields => {
@@ -455,6 +461,8 @@ export class ClassListComponent implements OnInit, AfterViewInit, OnDestroy {
                   subItem.studentView.gradeLevel = subItem.studentView?.gradeLevelTitle;
 
                   subItem.studentView.studentId = subItem.studentView?.studentInternalId;
+
+                  subItem.studentView.dateOfBirth = this.formatDate(subItem.studentView?.dob);
 
                   subItem?.fieldsCategoryList[0]?.customFields?.map(subOfSubItem => {
                     subItem.studentView[subOfSubItem.title] = subOfSubItem.customFieldsValue?.length > 0 ? subOfSubItem.customFieldsValue[0].customFieldValue : subOfSubItem.defaultSelection;
