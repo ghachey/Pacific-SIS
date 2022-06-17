@@ -297,8 +297,6 @@ export class GradebookGradeListComponent implements OnInit {
             }
           }
         );
-        
-        this.createDataSetForExcel();
         };
 
       })
@@ -350,7 +348,7 @@ export class GradebookGradeListComponent implements OnInit {
     });
   }
 
-  createDataSetForExcel() {
+  generateGradebookExcel() {
     this.studentListForGenerateExcel = [];
     this.addGradebookGradeModel.assignmentsListViewModels?.map((item)=>{
       item.studentsListViewModels.map((subItem)=>{
@@ -371,10 +369,8 @@ export class GradebookGradeListComponent implements OnInit {
         )
       });
     });
-  }
-
-  generateGradebookExcel() {
-    this.excelService.exportAsExcelFile(this.studentListForGenerateExcel,'Gradebook_grades_');
+    if(this.studentListForGenerateExcel)
+      this.excelService.exportAsExcelFile(this.studentListForGenerateExcel,'Gradebook_grades_');
   }
 
   showHideUngraded(status, item) {

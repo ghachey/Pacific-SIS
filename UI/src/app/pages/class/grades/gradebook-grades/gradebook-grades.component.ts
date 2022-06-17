@@ -251,7 +251,6 @@ export class GradebookGradesComponent implements OnInit, AfterViewInit, OnDestro
         });
         this.isConfigUpdateFlag.emit(res?.configUpdateFlag)
         this.addGradebookGradeModel = res;
-        this.createDataSetForExcel();
         };
 
       })
@@ -320,7 +319,7 @@ export class GradebookGradesComponent implements OnInit, AfterViewInit, OnDestro
     });
   }
 
-  createDataSetForExcel() {
+  generateGradebookExcel() {
     this.studentListForGenerateExcel = [];
     this.addGradebookGradeModel.assignmentsListViewModels?.map((item)=>{
       item.studentsListViewModels.map((subItem)=>{
@@ -341,10 +340,8 @@ export class GradebookGradesComponent implements OnInit, AfterViewInit, OnDestro
         )
       });
     });
-  }
-
-  generateGradebookExcel() {
-    this.excelService.exportAsExcelFile(this.studentListForGenerateExcel,'Gradebook_grades_');
+    if(this.studentListForGenerateExcel)
+      this.excelService.exportAsExcelFile(this.studentListForGenerateExcel,'Gradebook_grades_');    
   }
 
   showHideUngraded(status, item) {
